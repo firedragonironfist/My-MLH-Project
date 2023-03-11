@@ -13,4 +13,4 @@ This will install all the necessary dependencies required for the package to fun
 - [X] ~~Changing the from and to data make it domestic~~
 - [ ] Resolving the CRUD errors
 - [ ] Completing the Login and signup authentication page
-- [X] Adding content to the services
+- [X] ~~Adding content to the services~~
