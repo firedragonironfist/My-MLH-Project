@@ -9,7 +9,7 @@ This will install all the necessary dependencies required for the package to fun
 
 ## List of things Yet to complete
 
-- [ ] ~~Adding routes to href~~
+- [X] ~~Adding routes to href~~
 - [X] ~~Changing the from and to data make it domestic~~
 - [ ] Resolving the CRUD errors
 - [ ] Completing the Login and signup authentication page
