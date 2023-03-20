@@ -5,6 +5,7 @@ const ejsMate = require('ejs-mate')
 const staticPath = path.join(__dirname,'../public')
 const mongoose = require('mongoose')
 const Flight = require('./models/Flight')
+const tickets = require('./seeds/tickets')
 
 mongoose.connect('mongodb://127.0.0.1:27017/airline',{
     useNewUrlParser: true,
@@ -30,14 +31,14 @@ app.get('/login',(req,res)=>{
 app.get('/adminlogin',(req,res)=>{
     res.render('Airline/adminlogin')
 })
-app.get('/admin',(req,res)=>{
-    res.render('Airline/admin')
+app.get('/admin',async(req,res)=>{
+    const flight = new Flight({from: 'Banglore', to: 'Mumbai', fdate: '07-03-2023', tdate: '08-03-2023', price: 699})
+    await flight.save()
+    const ticketData = tickets;
+    res.render('Airline/admin', { flight: flight, tickets: ticketData });
 })
 app.get('/book',(req,res)=>{
     res.render('Airline/book')
-})
-app.get('/manage',(req,res)=>{
-    res.render('Airline/manage')
 })
 app.get('/',(req,res)=>{
     res.render('home')
@@ -47,11 +48,13 @@ app.get('/flights', async(req,res)=>{
     res.render('Airline/manage')
 })
 
-app.get('/makeFlight',async(req,res)=>{
+app.get('/manage',async(req,res)=>{
     const flight = new Flight({from: 'Banglore', to: 'Mumbai', fdate: '07-03-2023', tdate: '08-03-2023', price: 699})
     await flight.save()
-    res.send(flight)
+    const ticketData = tickets;
+    res.render('Airline/manage', { flight: flight, tickets: ticketData });
 })
+
 app.listen(3000, ()=>{
     console.log('Serving at port 3000')
 })
