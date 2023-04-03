@@ -55,6 +55,11 @@ app.get('/manage',async(req,res)=>{
     res.render('Airline/manage', { flight: flight, tickets: ticketData });
 })
 
+app.get('/admin/:id', (req, res) => {
+    const id = req.params.id;
+    res.render('Airline/show', { id });
+});
+
 app.listen(3000, ()=>{
     console.log('Serving at port 3000')
 })
